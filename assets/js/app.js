@@ -1,34 +1,35 @@
 var tableBombIt = [
-					" ",
-					"*",
-					"1",
-					" ",
-					"/n",
-					" ",
-					" ",
-					"*",
-					"3",
-					"/n",
-					"1",
-					"*",
-					" ",
-					" ",
-					"/n",
-					" ",
-					"3",
-					"*",
-					" "
+					' ',
+					'*',
+					'1',
+					' ',
+					'/n',
+					' ',
+					' ',
+					'*',
+					'3',
+					'/n',
+					'1',
+					'*',
+					' ',
+					' ',
+					'/n',
+					' ',
+					'3',
+					'*',
+					' '
 ];
 
 var containerBombIt = document.getElementById("container-bomb-it");
+
 var bombIt = document.getElementById("bomb-it");
 
-var drawGameZone = function(array){
+function drawGameZone(array){
 	for(i = 0; i < tableBombIt.lenght; i++){
 		var cell = document.createElement("div");
 		var enter = document.createElement("br");
 
-		if (array[i] == "1" || array[i] == "2" || array[i] == "3") {
+		if (array[i] == '1' || array[i] == '2' || array[i] == '3') {
 			cell.className = "number";
 			cell.innerText = array[i];
 			cell.onclick = showNumber;
@@ -38,37 +39,39 @@ var drawGameZone = function(array){
 		} else if(array[i] == "*"){
 			cell.className = "bomb";
 			cell.onclick = boom;
-		} else if (array[i] == "/n"){
+		} else{
 			bombIt.appendChild(enter);
 			continue;
 		}
 
 		bombIt.appendChild(cell);
 	}
-};
 
-var showNumber= function(){
-	this.className = "number numberShow";
-};
-
-var changeColor = function(){
-	this.style.backgroundColor = "black";
-};
-
-var boom = function() {
-	containerBombIt.removeChild(bombIt);
-	containerBombIt.innerHTML = "<img src='https://media.giphy.com/media/3osxYCsLd9qgsgqpwI/giphy.gif'">
 	addBtnRestart();
 };
 
-var addBtnRestart = function(){
+function showNumber() {
+	this.className = "number numberShow";
+};
+
+function changeColor (){
+	this.style.backgroundColor = "black";
+};
+
+function boom() {
+	containerBombIt.removeChild(bombIt);
+	containerBombIt.innerHTML = "<img src='https://media.giphy.com/media/ODU1I5zAgOwX6/giphy.gif' alt='BOOM'>";
+	addBtnRestart();
+};
+
+function addBtnRestart(){
 	var btnRestart = document.createElement("button");
 	btnRestart.innerText = "Restart!!";
 	btnRestart.addEventListener("click", reStart);
 	containerBombIt.appendChild(btnRestart);
 };
 
-var reStart = function (){
+function reStart(){
 	location.reload();
 };
 
